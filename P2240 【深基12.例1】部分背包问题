@@ -1,0 +1,77 @@
+#include <iostream>
+using namespace std;
+#include <iomanip>
+
+class price {
+public:
+	void scanx(int h)
+	{
+		x = h;
+	}
+	void scan(int i) 
+	{
+		cin >> wei[i] >> pri[i];
+		per[i] = float(pri[i]) / wei[i];
+	}
+	void sort(int n)
+	{
+		float max = 0,exf;
+		int maxnum = 0,ex;
+		for (int i = 0; i < n; i++)
+		{
+			for (int j = i; j < n; j++)
+			{
+				if (max < per[j])
+				{
+					maxnum = j;
+					max = per[j];
+				}
+			}
+			ex = wei[maxnum];
+			wei[maxnum] = wei[i];
+			wei[i] = ex;
+			ex = pri[maxnum];
+			pri[maxnum] = pri[i];
+			pri[i] = ex;
+			exf = per[maxnum];
+			per[maxnum] = per[i];
+			per[i] = exf;
+			max = 0;
+		}
+	}
+	void backage(int n)
+	{
+		int i;
+		for (i = 0; x > 0 && i < n; i++)
+		{
+			if (x > wei[i])
+			{
+				sum = sum + pri[i];
+				x = x - wei[i];
+			}
+			else
+				break;
+		}
+		sum = sum + x * per[i];
+		cout << fixed << setprecision(2) << sum;
+	}
+private:
+	int wei[100],pri[100];
+	float per[100];
+	float sum = 0;
+	int x;
+};
+
+int main()
+{
+	int n,ba;
+	price p;
+	cin >> n >> ba;
+	p.scanx(ba);
+	for (int i = 0; i < n; i++)
+	{
+		p.scan(i);
+	}
+	p.sort(n);
+	p.backage(n);
+}
