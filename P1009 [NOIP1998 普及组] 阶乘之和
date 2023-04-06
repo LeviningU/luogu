@@ -1,0 +1,73 @@
+#include <iostream>
+using namespace std;
+
+class con
+{
+public:
+	void run()
+	{
+		scan();
+		com();
+		print();
+	}
+	void scan()
+	{
+		cin >> n;
+	}
+	void com()
+	{
+		for (int i = 1; i <= n; i++)
+		{
+			for (int j = 1; j <= i; j++)
+			{
+				muti(j);
+			}
+		plus();
+		num[0] = { 1 };
+		for (int j = 1; j <= 99; j++)
+		{
+			num[j] = 0;
+		}
+		}
+	}
+	void plus()
+	{
+		int ci = 0, xi;
+		for (int j = 0; j < 100; j++)
+		{
+			xi = sum[j] + num[j] + ci;
+			sum[j] = xi % 10;
+			ci = xi / 10;
+		}
+	}
+	void muti(int x)
+	{
+		int ci = 0, xi;
+		for (int j = 0; j < 100; j++)
+		{
+			xi = ci + num[j] * x;
+			num[j] = xi % 10;
+			ci = xi / 10;
+		}
+	}
+	void print()
+	{
+		int j = 99;
+		for (; j > 0 && sum[j] == 0; j--)
+		{
+		}
+		for (; j >= 0; j--)
+		{
+			cout << sum[j];
+		}
+	}
+private:
+	int num[100] = {1};
+	int sum[100] = {0};
+	int n;
+};
+int main()
+{
+	con c;
+	c.run();
+}
